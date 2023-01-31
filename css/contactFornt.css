@@ -65,4 +65,9 @@ form textarea {
     left: 7px;
     color: #FFF;
 }
+
+.contact-form .custom-alert {
+    padding: 5px 10px;
+    display: none;
+}
 /* End Form*/

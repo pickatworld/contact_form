@@ -6,11 +6,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Assign Variables
 
-    $user    = $_POST['username'];
-    $mail    = $_POST['email'];
-    $mobile  = $_POST['MobileNumber'];
-    $msg     = $_POST['message'];
+    $user    = filter_var($_POST['username'], FILTER_SANITIZE_STRING) ;
+    $mail    = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $mobile  = filter_var($_POST['MobileNumber'], FILTER_SANITIZE_NUMBER_INT);
+    $msg     = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
 
+    echo $user;
     // Creating Array Of Errors
 
     $formErrors = array();
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/contactFornt.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;900&display=swap">
@@ -71,31 +72,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php } ?>
 
             <div class="form-group">
-                <input class="form-control" type="text" name="username"
+                <input 
+                class="username form-control" 
+                type="text" name="username"
                 value="<?php if(isset($user)) {echo $user;}?>"
                  placeholder="User Name" />
                 <i class="fa-solid fa-user"></i>
                 <span class="asterisk">*</span>
+                <div class="alert alert-danger custom-alert">
+                    '* User Name Must Be Larger Than 2 Characters'
+                </div>
             </div>
             <div class="form-group">
-                <input class="form-control" type="email" name="email" 
+                <input class="mail form-control" type="email" name="email" 
                 value="<?php if(isset($mail)) {echo $mail;}?>"
                 placeholder="Your Email" />
                 <i class="fa-solid fa-envelope"></i>
                 <span class="asterisk">*</span>
+                <div class="alert alert-danger custom-alert">
+                    '* Email can't Be Empty'
+                </div>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="MobileNumber"
+                <input class="mobile form-control" type="text" name="MobileNumber"
                 value="<?php if(isset($mobile)) {echo $mobile;}?>" 
                 placeholder="Your Mobile Number" />
                 <i class="fa-solid fa-mobile"></i>
                 <span class="asterisk">*</span>
+                <div class="alert alert-danger custom-alert">
+                    '* Mobile can't Be Empty'
+                </div>
             </div>
             
-                <textarea class="form-control" 
+                <textarea class="massage form-control" 
                 name="message"
-                placeholder="Your Massage!">
-                <?php if (isset($msg)) { echo $msg; } ?></textarea>
+                placeholder="Your Massage!"><?php if (isset($msg)) { echo $msg; } ?></textarea>
+                <div class="alert alert-danger custom-alert">
+                    '* Massage can't Be Empty and Must Be 10 Characters'
+                </div>
                 <input class="btn btn-success" type="submit" value="send Massage" />
                 <i class="fa-solid fa-paper-plane send-icon"></i>
             
@@ -112,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/frontEnd.js"></script>
+    <script src= "js/custom.js"></script>
 </body>
 
 </html>
