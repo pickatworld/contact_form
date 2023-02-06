@@ -103,10 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     '* Mobile can't Be Empty'
                 </div>
             </div>
-            
-                <textarea class="massage form-control" 
-                name="message"
-                placeholder="Your Massage!"><?php if (isset($msg)) { echo $msg; } ?></textarea>
+            <div class="form-group">
+                    <textarea class="massage form-control" 
+                    name="message"
+                    placeholder="Your Massage!"><?php if (isset($msg)) { echo $msg; } ?></textarea>
+            </div>
                 <div class="alert alert-danger custom-alert">
                     '* Massage can't Be Empty and Must Be 10 Characters'
                 </div>
@@ -126,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/frontEnd.js"></script>
-    <script src= "js/custom.js"></script>
+    <script src= "js/custom_2.js"></script>
 </body>
 
 </html>
